@@ -12,12 +12,6 @@ class Immagin {
   constructor(auth?: ImmaginAuthInput) {
     this._clientId = process.env.IMMAGIN_CLIENT_ID || auth?.clientId || '';
     this._clientSecret = process.env.IMMAGIN_CLIENT_SECRET || auth?.clientSecret || '';
-    if (!this._clientId) {
-      console.log(chalk.bgRed.whiteBright('Immagin Client ID is not set'));
-    }
-    if (!this._clientSecret) {
-      console.log(chalk.bgRed.whiteBright('Immagin Client Secret is not set'));
-    }
   }
   protected _buildSignOptions(options?: SignKeyOptions): SignKeyOptions {
     return {
@@ -26,7 +20,6 @@ class Immagin {
   }
   private _verifyClient() {
     if (!this._clientId || !this._clientSecret) {
-      console.log(chalk.red('clientId or ClientSecret is not provided'))
       return false;
     }
     return true;
@@ -41,7 +34,7 @@ class Immagin {
   
   async getUploadSignKey(key: uploadKeyInput, options?: SignKeyOptions) {
     if (!this._verifyClient()) {
-      throw 'clientId or ClientSecret error'
+      throw Error('clientId or ClientSecret error')
     }
     const [sign, err] = await asyncTry(
       getPostKey({
@@ -53,7 +46,7 @@ class Immagin {
       ) 
     )
     if (err) {
-      throw err;
+      throw err as Error;
     }
     return sign;
   }
@@ -65,7 +58,7 @@ class Immagin {
    */
   async uploadSingleFile(file: any) {
     if (!this._verifyClient()) {
-      throw 'clientId or ClientSecret error'
+      throw Error('clientId or ClientSecret error')
     }
     const [sign, err] = await asyncTry(
       getPutSignKey({
@@ -74,7 +67,7 @@ class Immagin {
       }, file?.name)
     );
     if (err) {
-      throw err;
+      throw err as Error;
     }
     const [uploadResponse, uploadError] = await asyncTry(
       upload(

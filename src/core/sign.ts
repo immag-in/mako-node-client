@@ -33,6 +33,7 @@ export const getPutSignKey = async (auth: ImmaginAuthInput, filename?: string | 
 };
 export const getPostKey = async (auth: ImmaginAuthInput, options: SignKeyOptions, filename?: string | null) => {
 	if (!filename && options.showWarning) {
+		// tslint:disable-next-line:no-console
 		console.log(
 			chalk.yellowBright(
 				'⚠️ If you do not provide filename, Immagin will automatically assigns an automated key for you'
