@@ -1,0 +1,27 @@
+version: '3.4'
+services:
+  makots:
+    image: node:14-alpine
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+      - type: volume
+        source: nodemodules # name of the volume, see below
+        target: /app/node_modules
+        volume:
+          nocopy: true
+    working_dir: /app
+    command: npm run dev
+    networks:
+      - backend
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+volumes:
+  nodemodules:
+networks:
+  backend:
+    driver: 'bridge'
