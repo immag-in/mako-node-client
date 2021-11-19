@@ -1,4 +1,3 @@
-// import axios from 'axios';
 import { asyncTry } from '@exivar/funtry';
 import axios from 'axios';
 import chalk from 'chalk';

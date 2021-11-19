@@ -5,5 +5,5 @@
     "outDir": "lib/module",
     "module": "esnext"
   },
-  "exclude": ["node_modules/**", "**/__tests__/*"]
+  "exclude": ["node_modules/**", "example/**/*","**/__tests__/*"]
 }

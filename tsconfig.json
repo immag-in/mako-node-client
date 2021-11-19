@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "target": "ES5",
+    "target": "ES6",
     "module": "commonjs",
     "declaration": true,
     "outDir": "./lib",
+    "rootDirs": [
+      "src"
+    ],
     "strict": true,
     "types": ["jest", "node"],
     "sourceMap": true,
@@ -12,6 +14,5 @@
     "esModuleInterop": true,
     "lib": ["ES2015"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "exclude": ["node_modules", "example/**/*" ,"**/__tests__/*"]
 }

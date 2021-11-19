@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import fileUpload from 'express-fileupload';
 import compression from 'compression'; // compresses requests
 
-import Immagin from '../../../lib'; // for testing purposes only
+import Immagin from '../../../lib/core'; // for testing purposes only
 
 const client = new Immagin();
 
