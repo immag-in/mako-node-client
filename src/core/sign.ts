@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import { SignKeyOptions, ImmaginAuthInput, PutHTTPResponse, PostHTTPResponse } from '../types/core';
 
 const API_URL = 'https://mako.immag.in';
+// const API_URL = 'http://localhost:4002';
 /**
  * @returns string put url
  */
@@ -54,6 +55,7 @@ export const getPostKey = async (auth: ImmaginAuthInput, options: SignKeyOptions
 			},
 			data: {
 				filename,
+				type: options?.type || 'photo',
 			},
 		})
 	);

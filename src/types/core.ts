@@ -5,8 +5,13 @@ export interface ImmaginAuthInput {
 
 export type uploadKeyInput = string;
 
+export enum SignOptionType {
+	PHOTO,
+	VIDEO,
+}
 export interface SignKeyOptions {
 	showWarning?: boolean;
+	type?: SignOptionType;
 }
 
 export interface File {
@@ -18,7 +23,7 @@ export interface File {
 	truncated: boolean;
 	mimetype: string;
 	md5: string;
-	mv: Function;
+	mv: () => void;
 }
 
 export interface SignedKeyFields {
@@ -39,13 +44,13 @@ export interface SignKeyData {
 	lunaAccessURL: string;
 }
 
-interface putKeyResponse {
+interface PutKeyResponse {
 	url: string;
 	key: string;
 }
 
 export interface PutHTTPResponse {
-	data: putKeyResponse;
+	data: PutKeyResponse;
 	ok: boolean;
 	status: number;
 	error: null | Error;

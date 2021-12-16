@@ -1,5 +1,5 @@
 import { asyncTry } from '@exivar/funtry';
-import { ImmaginAuthInput, uploadKeyInput, SignKeyOptions, UploadResponse } from '../types/core';
+import { ImmaginAuthInput, uploadKeyInput, SignKeyOptions, UploadResponse, SignOptionType } from '../types/core';
 import { getPutSignKey, getPostKey } from '../core/sign';
 import { upload } from './upload';
 import chalk from 'chalk';
@@ -15,7 +15,8 @@ class Immagin {
   }
   protected _buildSignOptions(options?: SignKeyOptions): SignKeyOptions {
     return {
-      showWarning: options?.showWarning ?? true
+      showWarning: options?.showWarning ?? true,
+      type: options?.type || SignOptionType.PHOTO
     }
   }
   private _verifyClient() {
